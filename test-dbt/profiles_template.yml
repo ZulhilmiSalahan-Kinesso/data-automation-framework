@@ -1,0 +1,39 @@
+mssql-db:
+  target: dev
+  outputs:
+    dev:
+      type: sqlserver
+      driver: 'ODBC Driver 17 for SQL Server'
+      server: <Server Host IP>
+      port: 1433
+      database: '<DatabaseName>'
+      schema: '<SchemaName>'
+      user: <User>
+      password: <Password>
+      trust_cert: true
+      threads: 8
+
+snowflake-wh:
+  target: dev
+  outputs:
+    dev:
+      type: snowflake
+      account: <SF Account>
+      user: <User>
+      role: <Role>
+      
+      # Keypair config
+      private_key_path: dev_regression_rsa_key.p8
+      
+      database: <Database>
+      warehouse: <Warehouse>
+      schema: <Schema>
+      threads: 8
+      client_session_keep_alive: False
+
+      # optional
+      connect_retries: 0 # default 0
+      connect_timeout: 10 # default: 10
+      retry_on_database_errors: False # default: false
+      retry_all: False  # default: false
+      reuse_connections: False # default: false (available v1.4+)
